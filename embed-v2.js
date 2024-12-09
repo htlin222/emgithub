@@ -120,6 +120,10 @@
 		? `https://cdn.jsdelivr.net/gh/${user}/${repository}@${branch}/${directoryPath}/`
 		: `https://raw.githubusercontent.com/${user}/${repository}/${branch}/${directoryPath}/`;
 
+	const fileName = directoryPath.split("/").pop(); // 取得最後一部分作為檔案名稱
+	const slugFileName = fileName
+		.replace(/\.[^/.]+$/, "")
+		.replace(/[^a-zA-Z0-9]/g, "-"); // 去除副檔名並將非字母數字替換為 "-"
 	const containerId = Math.random().toString(36).substring(2);
 	document.currentScript.insertAdjacentHTML(
 		"afterend",
@@ -303,8 +307,8 @@
   }
 
   .emgithub-file .code-area td.hljs-ln-line {
-    line-height: 21px;
-    font-size: 12px;
+    line-height: 30px;
+    font-size: 18px;
     font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
     border: 0;
   }
@@ -344,7 +348,7 @@
     left: -7.5em;
     width: 7em;
     text-align: right;
-    font-size: 13px;
+    font-size: 18px;
   }
 
   .emgithub-file .html-area .nb-input:before {
